@@ -11,7 +11,7 @@ If you want to learn more, read the [Summary of the tokenizers](https://huggingf
 
 ## Installation
 ```bash
-composer require gioni06/gpt3-tokenizer
+composer require ze/tokenizer-gpt3
 ```
 
 ## Use the configuration Class
