@@ -1,14 +1,14 @@
 <?php
 
-namespace Gioni06\Gpt3Tokenizer;
+namespace Ze\TokenizerGpt3;
 
 class Gpt3TokenizerConfig
 {
 
     private array $config = [
         'mergesPath' => __DIR__ . '/pretrained_vocab_files/merges.txt',
-        'vocabPath' => __DIR__ . '/pretrained_vocab_files/vocab.json',
-        'useCache' => true,
+        'vocabPath'  => __DIR__ . '/pretrained_vocab_files/vocab.json',
+        'useCache'   => true,
     ];
 
     public function mergesPath($path): Gpt3TokenizerConfig

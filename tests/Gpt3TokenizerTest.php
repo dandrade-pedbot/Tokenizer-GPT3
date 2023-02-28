@@ -1,9 +1,9 @@
 <?php /** @noinspection SpellCheckingInspection */
 
-namespace Gioni06\Gpt3Tokenizer\Tests;
+namespace Ze\TokenizerGpt3\Tests;
 
-use Gioni06\Gpt3Tokenizer\Gpt3Tokenizer;
-use Gioni06\Gpt3Tokenizer\Gpt3TokenizerConfig;
+use Ze\TokenizerGpt3\Gpt3Tokenizer;
+use Ze\TokenizerGpt3\Gpt3TokenizerConfig;
 use PHPUnit\Framework\TestCase;
 
 class Gpt3TokenizerTest extends TestCase {

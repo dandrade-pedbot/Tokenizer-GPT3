@@ -1,4 +1,6 @@
-# GPT3Tokenizer for PHP
+# Tokenizer-GPT3 base on PHP
+> This Project is fork from [Gioni06/GPT3Tokenizer](https://github.com/Gioni06/GPT3Tokenizer)    
+> Just do some changes for PHP 7.4 compatibility    
 
 This is a PHP port of the GPT-3 tokenizer. It is based on the [original Python implementation](https://huggingface.co/docs/transformers/model_doc/gpt2#transformers.GPT2Tokenizer) and the [Nodejs implementation](https://github.com/latitudegames/GPT-3-Encoder).
 
@@ -8,33 +10,19 @@ When you interact with the OpenAI API, you may find it useful to calculate the a
 If you want to learn more, read the [Summary of the tokenizers](https://huggingface.co/docs/transformers/tokenizer_summary) from Hugging Face.
 
 ## Installation
-Install the package from [Packagist](https://packagist.org/packages/gioni06/gpt3-tokenizer) using Composer:
-
 ```bash
 composer require gioni06/gpt3-tokenizer
-```
-
-## Testing
-Loading the vocabulary files consumes a lot of memory. You might need to increase the phpunit memory limit.
-https://stackoverflow.com/questions/46448294/phpunit-coverage-allowed-memory-size-of-536870912-bytes-exhausted
-```bash
-./vendor/bin/phpunit -d memory_limit=-1 tests/
 ```
 
 ## Use the configuration Class
 
 ```php
-use Gioni06\Gpt3Tokenizer\Gpt3TokenizerConfig;
-
-// default vocab path
-// default merges path
-// caching enabled
 $defaultConfig = new Gpt3TokenizerConfig();
 
 $customConfig = new Gpt3TokenizerConfig();
 $customConfig
-    ->vocabPath('custom_vocab.json') // path to a custom vocabulary file
-    ->mergesPath('custom_merges.txt') // path to a custom merges file
+    ->vocabPath('custom_vocab.json') 
+    ->mergesPath('custom_merges.txt')
     ->useCache(false)
 ```
 
@@ -45,9 +33,6 @@ You will see slightly better performance for long texts when using the cache. Th
 ## Encode a text
 
 ```php
-use Gioni06\Gpt3Tokenizer\Gpt3TokenizerConfig;
-use Gioni06\Gpt3Tokenizer\Gpt3Tokenizer;
-
 $config = new Gpt3TokenizerConfig();
 $tokenizer = new Gpt3Tokenizer($config);
 $text = "This is some text";
@@ -56,11 +41,7 @@ $tokens = $tokenizer->encode($text);
 ```
 
 ## Decode a text
-
 ```php
-use Gioni06\Gpt3Tokenizer\Gpt3TokenizerConfig;
-use Gioni06\Gpt3Tokenizer\Gpt3Tokenizer;
-
 $config = new Gpt3TokenizerConfig();
 $tokenizer = new Gpt3Tokenizer($config);
 $tokens = [1212,318,617,2420]
@@ -71,9 +52,6 @@ $text = $tokenizer->decode($tokens);
 ## Count the number of tokens in a text
 
 ```php
-use Gioni06\Gpt3Tokenizer\Gpt3TokenizerConfig;
-use Gioni06\Gpt3Tokenizer\Gpt3Tokenizer;
-
 $config = new Gpt3TokenizerConfig();
 $tokenizer = new Gpt3Tokenizer($config);
 $text = "This is some text";

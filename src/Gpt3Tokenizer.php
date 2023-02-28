@@ -1,10 +1,10 @@
 <?php
 
-namespace Gioni06\Gpt3Tokenizer;
+namespace Ze\TokenizerGpt3;
 
 class Gpt3Tokenizer
 {
-    private mixed $vocab;
+    private $vocab;
     private array $bpeMerges;
     private array $bpe_ranks;
     private bool $apcuAvailable;
@@ -39,27 +39,30 @@ class Gpt3Tokenizer
         if ($this->apcuAvailable) {
             /** @noinspection PhpComposerExtensionStubsInspection */
             apcu_store($key, $val);
-        } else {
+        }
+        else {
             $this->cache[$key] = $val;
         }
     }
 
-    private function cacheGet($key): mixed
+    private function cacheGet($key)
     {
         if ($this->apcuAvailable) {
             /** @noinspection PhpComposerExtensionStubsInspection */
             return apcu_fetch($key);
-        } else {
+        }
+        else {
             return $this->cache[$key] ?? null;
         }
     }
 
-    private function cacheExists($key): array|bool
+    private function cacheExists($key)
     {
         if ($this->apcuAvailable) {
             /** @noinspection PhpComposerExtensionStubsInspection */
             return apcu_exists($key);
-        } else {
+        }
+        else {
             return isset($this->cache[$key]);
         }
     }
@@ -70,106 +73,106 @@ class Gpt3Tokenizer
         // Using this static list is much faster than decoding the utf-8 everytime a character is encountered.
         // Also, it produces the exact output as tokenizer from OpenAI uses. https://beta.openai.com/tokenizer
         return [
-            0 => 'Ā',
-            1 => 'ā',
-            2 => 'Ă',
-            3 => 'ă',
-            4 => 'Ą',
-            5 => 'ą',
-            6 => 'Ć',
-            7 => 'ć',
-            8 => 'Ĉ',
-            9 => 'ĉ',
-            10 => 'Ċ',
-            11 => 'ċ',
-            12 => 'Č',
-            13 => 'č',
-            14 => 'Ď',
-            15 => 'ď',
-            16 => 'Đ',
-            17 => 'đ',
-            18 => 'Ē',
-            19 => 'ē',
-            20 => 'Ĕ',
-            21 => 'ĕ',
-            22 => 'Ė',
-            23 => 'ė',
-            24 => 'Ę',
-            25 => 'ę',
-            26 => 'Ě',
-            27 => 'ě',
-            28 => 'Ĝ',
-            29 => 'ĝ',
-            30 => 'Ğ',
-            31 => 'ğ',
-            32 => 'Ġ',
-            33 => '!',
-            34 => '"',
-            35 => '#',
-            36 => '$',
-            37 => '%',
-            38 => '&',
-            39 => '\'',
-            40 => '(',
-            41 => ')',
-            42 => '*',
-            43 => '+',
-            44 => ',',
-            45 => '-',
-            46 => '.',
-            47 => '/',
-            48 => '0',
-            49 => '1',
-            50 => '2',
-            51 => '3',
-            52 => '4',
-            53 => '5',
-            54 => '6',
-            55 => '7',
-            56 => '8',
-            57 => '9',
-            58 => ':',
-            59 => ';',
-            60 => '<',
-            61 => '=',
-            62 => '>',
-            63 => '?',
-            64 => '@',
-            65 => 'A',
-            66 => 'B',
-            67 => 'C',
-            68 => 'D',
-            69 => 'E',
-            70 => 'F',
-            71 => 'G',
-            72 => 'H',
-            73 => 'I',
-            74 => 'J',
-            75 => 'K',
-            76 => 'L',
-            77 => 'M',
-            78 => 'N',
-            79 => 'O',
-            80 => 'P',
-            81 => 'Q',
-            82 => 'R',
-            83 => 'S',
-            84 => 'T',
-            85 => 'U',
-            86 => 'V',
-            87 => 'W',
-            88 => 'X',
-            89 => 'Y',
-            90 => 'Z',
-            91 => '[',
-            92 => '\\',
-            93 => ']',
-            94 => '^',
-            95 => '_',
-            96 => '`',
-            97 => 'a',
-            98 => 'b',
-            99 => 'c',
+            0   => 'Ā',
+            1   => 'ā',
+            2   => 'Ă',
+            3   => 'ă',
+            4   => 'Ą',
+            5   => 'ą',
+            6   => 'Ć',
+            7   => 'ć',
+            8   => 'Ĉ',
+            9   => 'ĉ',
+            10  => 'Ċ',
+            11  => 'ċ',
+            12  => 'Č',
+            13  => 'č',
+            14  => 'Ď',
+            15  => 'ď',
+            16  => 'Đ',
+            17  => 'đ',
+            18  => 'Ē',
+            19  => 'ē',
+            20  => 'Ĕ',
+            21  => 'ĕ',
+            22  => 'Ė',
+            23  => 'ė',
+            24  => 'Ę',
+            25  => 'ę',
+            26  => 'Ě',
+            27  => 'ě',
+            28  => 'Ĝ',
+            29  => 'ĝ',
+            30  => 'Ğ',
+            31  => 'ğ',
+            32  => 'Ġ',
+            33  => '!',
+            34  => '"',
+            35  => '#',
+            36  => '$',
+            37  => '%',
+            38  => '&',
+            39  => '\'',
+            40  => '(',
+            41  => ')',
+            42  => '*',
+            43  => '+',
+            44  => ',',
+            45  => '-',
+            46  => '.',
+            47  => '/',
+            48  => '0',
+            49  => '1',
+            50  => '2',
+            51  => '3',
+            52  => '4',
+            53  => '5',
+            54  => '6',
+            55  => '7',
+            56  => '8',
+            57  => '9',
+            58  => ':',
+            59  => ';',
+            60  => '<',
+            61  => '=',
+            62  => '>',
+            63  => '?',
+            64  => '@',
+            65  => 'A',
+            66  => 'B',
+            67  => 'C',
+            68  => 'D',
+            69  => 'E',
+            70  => 'F',
+            71  => 'G',
+            72  => 'H',
+            73  => 'I',
+            74  => 'J',
+            75  => 'K',
+            76  => 'L',
+            77  => 'M',
+            78  => 'N',
+            79  => 'O',
+            80  => 'P',
+            81  => 'Q',
+            82  => 'R',
+            83  => 'S',
+            84  => 'T',
+            85  => 'U',
+            86  => 'V',
+            87  => 'W',
+            88  => 'X',
+            89  => 'Y',
+            90  => 'Z',
+            91  => '[',
+            92  => '\\',
+            93  => ']',
+            94  => '^',
+            95  => '_',
+            96  => '`',
+            97  => 'a',
+            98  => 'b',
+            99  => 'c',
             100 => 'd',
             101 => 'e',
             102 => 'f',
@@ -329,15 +332,17 @@ class Gpt3Tokenizer
         ];
     }
 
-    public static function encodeStr(string $str): array {
+    public static function encodeStr(string $str): array
+    {
         $bytes = str_split(bin2hex(mb_convert_encoding($str, 'UTF-8')), 2);
-        return array_map(function($byte){
+        return array_map(function ($byte) {
             return hexdec($byte);
-        },$bytes);
+        }, $bytes);
     }
 
-    public static function decodeStr(array $codes): string {
-        $bytes = array_map(function($code) {
+    public static function decodeStr(array $codes): string
+    {
+        $bytes = array_map(function ($code) {
             return chr($code);
         }, $codes);
         return implode($bytes);
@@ -364,13 +369,13 @@ class Gpt3Tokenizer
 
     public function bpe(string $token): string
     {
-        if($this->useCache && $this->cacheExists($token)) {
+        if ($this->useCache && $this->cacheExists($token)) {
             return $this->cacheGet($token);
         }
 
         $chars = mb_str_split($token);
         $pairs = self::get_pairs($chars);
-        if(!count($pairs)) {
+        if (! count($pairs)) {
             return implode(" ", $chars);
         }
 
@@ -380,18 +385,19 @@ class Gpt3Tokenizer
                 $pairStr = implode(",", $pair);
                 if (array_key_exists($pairStr, $this->bpe_ranks)) {
                     $minPairs[$this->bpe_ranks[$pairStr]] = $pair;
-                } else {
+                }
+                else {
                     $minPairs[10e10] = $pair;
                 }
             }
             ksort($minPairs);
 
-            $bigram = $minPairs[min(array_map(function($x) {
+            $bigram = $minPairs[min(array_map(function ($x) {
                 return intval($x);
             }, array_keys($minPairs)))];
 
             $bigramStr = implode(",", $bigram);
-            if (!array_key_exists($bigramStr, $this->bpe_ranks)) {
+            if (! array_key_exists($bigramStr, $this->bpe_ranks)) {
                 break;
             }
 
@@ -412,7 +418,8 @@ class Gpt3Tokenizer
                 if ($chars[$i] === $first && $i < count($chars) - 1 && $chars[$i + 1] === $second) {
                     $new_word[] = $first . $second;
                     $i = $i + 2;
-                } else {
+                }
+                else {
                     $new_word[] = $chars[$i];
                     $i++;
                 }
@@ -420,12 +427,13 @@ class Gpt3Tokenizer
             $chars = $new_word;
             if (count($chars) === 1) {
                 break;
-            } else {
+            }
+            else {
                 $pairs = self::get_pairs($chars);
             }
         }
         $result = implode(" ", $chars);
-        if($this->useCache) {
+        if ($this->useCache) {
             $this->cacheSet($token, $result);
         }
         return $result;
@@ -439,11 +447,11 @@ class Gpt3Tokenizer
         $matches = array();
         preg_match_all($pat, $text, $matches);
         foreach ($matches[0] as $token) {
-            $token = implode(array_map(function($x) use ($byte_encoder) {
+            $token = implode(array_map(function ($x) use ($byte_encoder) {
                 return $byte_encoder[$x];
             }, self::encodeStr($token)));
 
-            $new_tokens = array_map(function($x) {
+            $new_tokens = array_map(function ($x) {
                 return $this->vocab[$x];
             }, explode(' ', $this->bpe($token)));
             $bpe_tokens = array_merge($bpe_tokens, $new_tokens);
@@ -456,7 +464,7 @@ class Gpt3Tokenizer
         $decoder = array_flip($this->vocab);
         $byte_decoder = array_flip(self::bytes_to_unicode());
 
-        $text = array_map(function($x) use ($decoder) {
+        $text = array_map(function ($x) use ($decoder) {
             return $decoder[$x];
         }, $tokens);
 
