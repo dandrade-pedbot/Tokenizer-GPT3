@@ -1,5 +1,5 @@
 {
-  "name": "zyz954489346/tokenizer-gpt3",
+  "name": "ze/tokenizer-gpt3",
   "description": "PHP package for Byte Pair Encoding (BPE) used by GPT-3.",
   "keywords": ["gpt-3", "openai", "gpt-2", "tokenizer", "encode", "decode"],
   "license": "Apache-2.0",
